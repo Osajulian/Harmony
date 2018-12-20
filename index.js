@@ -1,17 +1,21 @@
 //CommonJS import statement
-const rect = require('./rectangle')
+const rect = require("./rectangle");
 
 const solveRect = (l, b) => {
   console.log(`Solving for Rectangle with l = ${l} , and b = ${b}`);
 
-  if (l <= 0 || b <= 0) {
-    console.log(
-      `Rectangle dimesions should be greater than zero: l = ${l}, and b= ${b}`
-    );
-  } else {
-    console.log(`The perimeter of the rectangle id ${rect.perimeter(l, b)}`);
-    console.log(`The area of the rectangle id ${rect.area(l, b)}`);
-  }
+  rect(l, b, (err, rectangle) => {
+    if (err) {
+      console.log("Error", err.message);
+    } else {
+      console.log(
+        `The area of the rectangle of dimensions l = ${l} and b = ${b} is ${rectangle.area()}`
+      );
+      console.log(
+        `The perimeter of the rectangle of dimensions l = ${l} and b = ${b} is ${rectangle.perimeter()}`
+      );
+    }
+  });
 };
 
 solveRect(2, 4);
